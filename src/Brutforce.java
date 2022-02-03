@@ -8,9 +8,8 @@ public class Brutforce {
     public static final String ALPHABET = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя .,-:;?!0123456789";
 
     public static void methodBrutforce() {
-        try {
-            int step = 1;
-            Scanner scannerBrutforce = new Scanner(System.in);
+        try (Scanner scannerBrutforce = new Scanner(System.in))  {
+            int key = 1;
 
             System.out.println("Введите имя файла и путь:");
 
@@ -19,7 +18,7 @@ public class Brutforce {
 
 
             FileWriter fileWriterBrutforce = new FileWriter(scannerBrutforce.nextLine());
-            while (step <= ALPHABET.length()) {
+            while (key <= ALPHABET.length()) {
                 String cypherTextAll = "";
                 String cypherText = "";
 
@@ -34,23 +33,16 @@ public class Brutforce {
                         for (int j = cypherCode.length - 1; j >= 0; j--) {
                             if (buffer[i] == cypherCode[j]) {
 
-                                j = j - step;
+                                j = j - key;
                                 if (j == -1) {
                                     j = cypherCode.length - 1;
                                 }
                                 if (j < -1) {
                                     j = j + cypherCode.length;
-
                                 }
-
-
                                 buffer[i] = cypherCode[j];
-
-
                             }
-
                         }
-
                     }
                     cypherText = String.valueOf(buffer);
                     if (cypherTextAll.equalsIgnoreCase("")) {
@@ -59,10 +51,7 @@ public class Brutforce {
                     } else {
                         cypherTextAll = cypherTextAll + cypherText + "\n";
                     }
-
-
                 }
-
 
                 int first = cypherTextAll.indexOf(" ");
                 int last = cypherTextAll.lastIndexOf(" ");
@@ -84,16 +73,16 @@ public class Brutforce {
                     count++;
                 }
 
-                if (cypherTextAll.indexOf(",:") == -1 && cypherTextAll.indexOf(":,") == -1 && cypherTextAll.indexOf(":;") == -1 && cypherTextAll.indexOf(";:") == -1) {
+                if ( !cypherTextAll.contains(",:") && !cypherTextAll.contains(":,") && !cypherTextAll.contains(":;") && !cypherTextAll.contains(";:")) {
                     count++;
                 }
-                if (cypherTextAll.indexOf(",!") == -1 && cypherTextAll.indexOf("!,") == -1 && cypherTextAll.indexOf("?;") == -1 && cypherTextAll.indexOf(";?") == -1) {
+                if (!cypherTextAll.contains(",!") && !cypherTextAll.contains("!,") && !cypherTextAll.contains("?;") && !cypherTextAll.contains(";?")) {
                     count++;
                 }
-                if (cypherTextAll.indexOf(".?") == -1 && cypherTextAll.indexOf(";.") == -1 && cypherTextAll.indexOf(":.") == -1 && cypherTextAll.indexOf(".!") == -1) {
+                if (!cypherTextAll.contains(".?") && !cypherTextAll.contains(";.") && !cypherTextAll.contains(":.") && !cypherTextAll.contains(".!")) {
                     count++;
                 }
-                if (cypherTextAll.indexOf("-:") == -1 && cypherTextAll.indexOf("-.") == -1 && cypherTextAll.indexOf("::") == -1 && cypherTextAll.indexOf(";;") == -1) {
+                if (!cypherTextAll.contains("-:") && !cypherTextAll.contains("-.") && !cypherTextAll.contains("::") && !cypherTextAll.contains(";;")) {
                     count++;
                 }
                 if (count == 7) {
@@ -102,7 +91,7 @@ public class Brutforce {
                     String answer = scannerBrutforce.nextLine();
                     if (answer.equalsIgnoreCase("1")) {
                         fileWriterBrutforce.write(cypherTextAll);
-                        System.out.println("Ключ расшифровки: " + step);
+                        System.out.println("Ключ расшифровки: " + key);
                         System.out.println("Готово!");
                         fileWriterBrutforce.close();
                         break;
@@ -110,19 +99,14 @@ public class Brutforce {
                         System.out.println("Попробуем с другим ключом!");
                         System.out.println("Если нет больше подходящего, программа завершится");
                     }
-
                 }
-                step++;
+                key++;
             }
-            scannerBrutforce.close();
 
         } catch (Exception e) {
             System.out.println("что-то не то" + e);
         }
-
-
     }
-
 }
 
 
