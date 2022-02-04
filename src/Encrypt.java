@@ -27,7 +27,7 @@ public class Encrypt {
 
                 for (int i = 0; i < arrayChars.length; i++) {
                     int indexALPHABET = ALPHABET.indexOf(arrayChars[i]);
-                    int newIndex = indexALPHABET + key;
+                    int newIndex = indexALPHABET + key % ALPHABET.length();
                     char newChar = ALPHABET.charAt(newIndex);
                     newArray[i] = newChar;
                 }
