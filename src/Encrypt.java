@@ -31,9 +31,8 @@ public class Encrypt {
                     char newChar = ALPHABET.charAt(newIndex);
                     newArray[i] = newChar;
                 }
-
                 cypherText = String.valueOf(newArray);
-                if (cypherTextAll.toString().equalsIgnoreCase("")) {
+                if (cypherTextAll.toString().isEmpty()) {
                     cypherTextAll = new StringBuilder(cypherText + System.lineSeparator());
                 } else {
                     cypherTextAll.append(cypherText).append(System.lineSeparator());
@@ -41,7 +40,6 @@ public class Encrypt {
             }
             fileWriterEncrypt.write(cypherTextAll.toString());
             System.out.println("Готово!");
-
         } catch (Exception e) {
             System.out.println("что-то не то" + e);
         }
