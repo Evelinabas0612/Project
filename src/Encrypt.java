@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Encrypt {
-    public static final String ALPHABET = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя .,-:;?!0123456789";
+    public static final String ALPHABET = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя .,-:;?!0123456789абвгдеёжзийклмнопрстуфхцчшщъыьэюя .,-:;?!0123456789";
 
     public static void methodEncrypt() {
         try (Scanner scannerEncrypt = new Scanner(System.in);
@@ -27,7 +27,13 @@ public class Encrypt {
 
                 for (int i = 0; i < arrayChars.length; i++) {
                     int indexALPHABET = ALPHABET.indexOf(arrayChars[i]);
-                    int newIndex = (indexALPHABET + key) % ALPHABET.length();
+                    int newIndex;
+                    if (key > 0) {
+                        newIndex = (indexALPHABET + key) % ALPHABET.length();
+                    } else {
+                        int newKey = key % (ALPHABET.length() / 2);
+                        newIndex = (indexALPHABET + (ALPHABET.length() / 2) + newKey) % ALPHABET.length();
+                    }
                     char newChar = ALPHABET.charAt(newIndex);
                     newArray[i] = newChar;
                 }
