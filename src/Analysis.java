@@ -59,17 +59,12 @@ public class Analysis {
 
                 int count = 0;
                 for (int i = 0; i < cypherCode.length; i++) {
-
-
                     for (int j = 0; j < bufferEncrypt.length; j++) {
-
                         if (cypherCode[i] == bufferEncrypt[j]) {
                             count++;
-
                         }
                         counterEncrypt = counterEncrypt + count;
                         count = 0;
-
                     }
                     if (mapLinesEncrypt.containsKey(cypherCode[i])) {
                         int sum = mapLinesEncrypt.get(cypherCode[i]);
@@ -113,17 +108,12 @@ public class Analysis {
                 char[] buffer = s.toLowerCase().toCharArray();
                 char[] newBuffer = new char[buffer.length];
 
-
                 for (int j = 0; j < buffer.length; j++) {
                     for (int k = 0; k < newDecryptCode.length; k++) {
                         if (buffer[j] == newDecryptCode[k]) {
                             newBuffer[j] = newEncryptCode[k];
                         }
-
-
                     }
-
-
                 }
                 cypherText = String.valueOf(newBuffer);
                 if (cypherTextAll.equalsIgnoreCase("")) {
